@@ -94,4 +94,4 @@ int calculerPGCD(int num1, int num2)
 		return calculerPGCD((num1 - num2) >> 1, num2);
 
 	return calculerPGCD((num2 - num1) >> 1, num1);
-}
+} 
