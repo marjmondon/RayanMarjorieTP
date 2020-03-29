@@ -66,3 +66,32 @@ void afficherResultat() {
 		std::cout << tabFraction[i] << "/" << tabFraction[i + 1] << std::endl;
 	}
 }
+
+//Simplification de la fraction en prenant numérateur et dénominateur et les divisant par le PGCD!
+void simplifieFrac(int* num1, int* num2, int PGCD) {
+	*num1 = *num1 / PGCD;
+	*num2 = *num2 / PGCD;
+}
+
+//Calcul du PGCD avec l'Algortithme de Stein!
+int calculerPGCD(int num1, int num2)
+{
+	if (num1 == num2)
+		return num1;
+
+	if (~num1 & 1)
+	{
+		if (num2 & 1)
+			return calculerPGCD(num1 >> 1, num2);
+		else
+			return calculerPGCD(num1 >> 1, num2 >> 1) << 1;
+	}
+
+	if (~num2 & 1)
+		return calculerPGCD(num1, num2 >> 1);
+
+	if (num1 > num2)
+		return calculerPGCD((num1 - num2) >> 1, num2);
+
+	return calculerPGCD((num2 - num1) >> 1, num1);
+}
